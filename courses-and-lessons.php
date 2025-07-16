@@ -182,8 +182,8 @@ add_filter('manage_lesson_posts_columns', function ($columns) {
         'cb' => $columns['cb'],
         'title' => $columns['title'],
         'courses' => __('Courses', 'courses-and-lessons'),
-        'date' => $columns['date'],
         'lesson_order' => __('Order', 'courses-and-lessons'),
+        'date' => $columns['date'],
     ];
 });
 
