@@ -1,0 +1,99 @@
+# Courses and Lessons
+# Copyright (C) Carlos Capote Pérez-Andreu
+# This file is distributed under the same license as the courses-and-lessons package.
+# Carlos Capote Pérez-Andreu <carlos.capote@hawara.es>, 2025.
+
+msgid ""
+msgstr ""
+"Project-Id-Version: Courses and Lessons 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-16 12:00+0000\n"
+"PO-Revision-Date: 2025-07-16 12:00+0000\n"
+"Last-Translator: Carlos Capote Pérez-Andreu <carlos.capote@hawara.es>\n"
+"Language-Team: Spanish\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Lessons"
+msgstr "Lecciones"
+
+msgid "Lesson"
+msgstr "Lección"
+
+msgid "Add New"
+msgstr "Añadir nueva"
+
+msgid "Add New Lesson"
+msgstr "Añadir nueva lección"
+
+msgid "Edit Lesson"
+msgstr "Editar lección"
+
+msgid "New Lesson"
+msgstr "Nueva lección"
+
+msgid "View Lesson"
+msgstr "Ver lección"
+
+msgid "Search Lessons"
+msgstr "Buscar lecciones"
+
+msgid "No lessons found"
+msgstr "No se encontraron lecciones"
+
+msgid "No lessons found in trash"
+msgstr "No se encontraron lecciones en la papelera"
+
+msgid "All Lessons"
+msgstr "Todas las lecciones"
+
+msgid "Lesson Archives"
+msgstr "Archivo de lecciones"
+
+msgid "Lesson Attributes"
+msgstr "Atributos de lección"
+
+msgid "Insert into lesson"
+msgstr "Insertar en lección"
+
+msgid "Uploaded to this lesson"
+msgstr "Subido a esta lección"
+
+msgid "Courses"
+msgstr "Cursos"
+
+msgid "Course"
+msgstr "Curso"
+
+msgid "Search Courses"
+msgstr "Buscar cursos"
+
+msgid "Popular Courses"
+msgstr "Cursos populares"
+
+msgid "All Courses"
+msgstr "Todos los cursos"
+
+msgid "Edit Course"
+msgstr "Editar curso"
+
+msgid "Update Course"
+msgstr "Actualizar curso"
+
+msgid "Add New Course"
+msgstr "Nuevo curso"
+
+msgid "New Course Name"
+msgstr "Nombre del nuevo curso"
+
+msgid "Separate courses with commas"
+msgstr "Separar cursos con comas"
+
+msgid "Add or remove courses"
+msgstr "Añadir o eliminar cursos"
+
+msgid "Choose from the most used courses"
+msgstr "Elegir de los cursos más utilizados"

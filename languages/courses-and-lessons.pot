@@ -1,0 +1,98 @@
+# Courses and Lessons
+# Copyright (C) Carlos Capote Pérez-Andreu
+# This file is distributed under the same license as the courses-and-lessons package.
+# Carlos Capote Pérez-Andreu <carlos.capote@hawara.es>, 2025.
+
+msgid ""
+msgstr ""
+"Project-Id-Version: Courses and Lessons 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-16 12:00+0000\n"
+"PO-Revision-Date: 2025-07-16 12:00+0000\n"
+"Last-Translator: Carlos Capote Pérez-Andreu <carlos.capote@hawara.es>\n"
+"Language-Team: Carlos Capote Pérez-Andreu <carlos.capote@hawara.es>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Lessons"
+msgstr ""
+
+msgid "Lesson"
+msgstr ""
+
+msgid "Add New"
+msgstr ""
+
+msgid "Add New Lesson"
+msgstr ""
+
+msgid "Edit Lesson"
+msgstr ""
+
+msgid "New Lesson"
+msgstr ""
+
+msgid "View Lesson"
+msgstr ""
+
+msgid "Search Lessons"
+msgstr ""
+
+msgid "No lessons found"
+msgstr ""
+
+msgid "No lessons found in trash"
+msgstr ""
+
+msgid "All Lessons"
+msgstr ""
+
+msgid "Lesson Archives"
+msgstr ""
+
+msgid "Lesson Attributes"
+msgstr ""
+
+msgid "Insert into lesson"
+msgstr ""
+
+msgid "Uploaded to this lesson"
+msgstr ""
+
+msgid "Courses"
+msgstr ""
+
+msgid "Course"
+msgstr ""
+
+msgid "Search Courses"
+msgstr ""
+
+msgid "Popular Courses"
+msgstr ""
+
+msgid "All Courses"
+msgstr ""
+
+msgid "Edit Course"
+msgstr ""
+
+msgid "Update Course"
+msgstr ""
+
+msgid "Add New Course"
+msgstr ""
+
+msgid "New Course Name"
+msgstr ""
+
+msgid "Separate courses with commas"
+msgstr ""
+
+msgid "Add or remove courses"
+msgstr ""
+
+msgid "Choose from the most used courses"
+msgstr ""
