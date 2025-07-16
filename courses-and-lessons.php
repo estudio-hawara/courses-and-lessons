@@ -14,6 +14,11 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+require_once 'src/loader.php';
+
+$plugin = new Plugin(plugin_dir_path(__FILE__));
+$templates = new Templates($plugin);
+
 /**
  * Register the Lesson custom post type
  */
@@ -207,23 +212,19 @@ add_action('manage_lesson_posts_custom_column',  function ($column, $post_id) {
     }
 }, 10, 2);
 
+// TODO: Populate the lesson order
+// https://www.voxfor.com/implementing-custom-quick-edit-for-custom-post-type-fields-in-wordpress/
+
 /**
  * Make the lesson order editable
  */
-add_action('quick_edit_custom_box', function($column_name, $post_type) {
-    if ($column_name !== 'lesson_order' || $post_type !== 'lesson') return;
-    ?>
-    <fieldset class="inline-edit-col-right">
-        <div class="inline-edit-col">
-            <label class="alignleft">
-                <span class="title"><?php echo __('Lesson Order', 'courses-and-lessons') ?></span>
-                <span class="input-text-wrap">
-                    <input type="number" name="lesson_order" class="lesson_order_field" />
-                </span>
-            </label>
-        </div>
-    </fieldset>
-    <?php
+add_action('quick_edit_custom_box', function($column_name, $post_type) use ($templates) {
+    if ($column_name !== 'lesson_order' || $post_type !== 'lesson')
+        return;
+
+    echo $templates->render('quick-edit-lesson-order', [
+        'title' => __('Lesson Order', 'courses-and-lessons'),
+    ]);
 }, 10, 2);
 
 /**
