@@ -107,7 +107,7 @@ add_action('init', function () {
 add_action('add_meta_boxes', function() {
     add_meta_box('course_dropdown_meta_box', __('Course', 'courses-and-lessons'),
         function ($post) {
-            $current_terms = wp_get_post_terms($post->ID, 'courses', array('fields' => 'ids'));
+            $current_terms = wp_get_post_terms($post->ID, 'courses', ['fields' => 'ids']);
             $current_term_id = $current_terms ? $current_terms[0] : 0;
 
             $terms = get_terms([
@@ -145,9 +145,9 @@ add_action('save_post_lesson', function ($post_id) {
     $term_id = isset($_POST['course_dropdown']) ? intval($_POST['course_dropdown']) : 0;
 
     if ($term_id) {
-        wp_set_post_terms($post_id, array($term_id), 'courses');
+        wp_set_post_terms($post_id, [$term_id], 'courses');
     } else {
-        wp_set_post_terms($post_id, array(), 'courses');
+        wp_set_post_terms($post_id, [], 'courses');
     }
 });
 
