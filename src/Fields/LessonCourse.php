@@ -12,7 +12,7 @@ class LessonCourse
     {
         add_action('add_meta_boxes', [$this, 'addMetaBox']);
         add_action('save_post_lesson', [$this, 'savePost']);
-        add_action('manage_lesson_posts_custom_column', [$this, 'displayColumnValue'], 10, 2);
+        add_action('manage_lesson_posts_custom_column', [$this, 'displayColumnValue'], accepted_args: 2);
         add_action('restrict_manage_posts', [$this, 'filterByCourse']);
     }
 

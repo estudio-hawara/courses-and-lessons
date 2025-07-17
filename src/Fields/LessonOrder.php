@@ -12,9 +12,9 @@ class LessonOrder
 
     public function addActions()
     {
-        add_action('quick_edit_custom_box', [$this, 'addCustomBox'], 10, 2);
+        add_action('quick_edit_custom_box', [$this, 'addCustomBox'], accepted_args: 2);
         add_action('save_post_lesson', [$this, 'savePost']);
-        add_action('manage_lesson_posts_custom_column',  [$this, 'displayColumnValue'], 10, 2);
+        add_action('manage_lesson_posts_custom_column',  [$this, 'displayColumnValue'], accepted_args: 2);
         add_action('pre_get_posts', [$this, 'handleSort']);
         add_action('admin_enqueue_scripts', [$this, 'enqueueScript']);
     }
