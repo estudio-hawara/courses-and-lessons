@@ -1,8 +1,8 @@
 <?php
 
-class Course
+class Course implements HasActions
 {
-    public function addActions()
+    public function addActions(): void
     {
         add_action('init', [$this, 'register']);
     }

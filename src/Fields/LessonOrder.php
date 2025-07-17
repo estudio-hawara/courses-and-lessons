@@ -1,6 +1,6 @@
 <?php
 
-class LessonOrder
+class LessonOrder implements HasActions, HasFilters
 {
     protected Templates $templates;
 
@@ -10,7 +10,7 @@ class LessonOrder
         $this->templates = $plugin->getTemplates();
     }
 
-    public function addActions()
+    public function addActions(): void
     {
         add_action('quick_edit_custom_box', [$this, 'addCustomBox'], accepted_args: 2);
         add_action('save_post_lesson', [$this, 'savePost']);
@@ -19,7 +19,7 @@ class LessonOrder
         add_action('admin_enqueue_scripts', [$this, 'enqueueScript']);
     }
 
-    public function addFilters()
+    public function addFilters(): void
     {
         add_filter('manage_edit-lesson_sortable_columns', [$this, 'makeSortable']);
     }

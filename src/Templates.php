@@ -1,6 +1,6 @@
 <?php
 
-class Templates
+class Templates implements HasPath
 {
     public function __construct(
         protected readonly Plugin $plugin

@@ -1,6 +1,6 @@
 <?php
 
-class TextDomain
+class TextDomain implements HasActions, HasPath
 {
     public function __construct(
         protected readonly Plugin $plugin
@@ -8,7 +8,7 @@ class TextDomain
         //
     }
 
-    public function addActions()
+    public function addActions(): void
     {
         add_action('init', [$this, 'load']);
     }

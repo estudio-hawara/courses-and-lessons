@@ -1,6 +1,6 @@
 <?php
 
-class Lesson
+class Lesson implements HasActions, HasFilters
 {
     public function addActions(): void
     {

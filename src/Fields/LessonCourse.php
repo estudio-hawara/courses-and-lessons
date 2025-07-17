@@ -1,6 +1,6 @@
 <?php
 
-class LessonCourse
+class LessonCourse implements HasActions
 {
     public function __construct(
         protected readonly Plugin $plugin
@@ -8,7 +8,7 @@ class LessonCourse
         //
     }
 
-    public function addActions()
+    public function addActions(): void
     {
         add_action('add_meta_boxes', [$this, 'addMetaBox']);
         add_action('save_post_lesson', [$this, 'savePost']);

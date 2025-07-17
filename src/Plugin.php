@@ -1,13 +1,19 @@
 <?php
 
+require_once 'Interfaces/HasActions.php';
+require_once 'Interfaces/HasFilters.php';
+require_once 'Interfaces/HasPath.php';
+
 require_once 'Templates.php';
 require_once 'TextDomain.php';
+
 require_once 'PostTypes/Lesson.php';
 require_once 'Taxonomies/Course.php';
+
 require_once 'Fields/LessonCourse.php';
 require_once 'Fields/LessonOrder.php';
 
-class Plugin
+class Plugin implements HasActions, HasFilters, HasPath
 {
     protected Templates $templates;
     protected Lesson $lesson;
