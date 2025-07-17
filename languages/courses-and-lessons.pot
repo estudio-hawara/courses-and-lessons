@@ -96,3 +96,6 @@ msgstr ""
 
 msgid "Choose from the most used courses"
 msgstr ""
+
+msgid "Order"
+msgstr ""

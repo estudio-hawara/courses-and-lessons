@@ -97,3 +97,6 @@ msgstr "Añadir o eliminar cursos"
 
 msgid "Choose from the most used courses"
 msgstr "Elegir de los cursos más utilizados"
+
+msgid "Order"
+msgstr "Orden"
