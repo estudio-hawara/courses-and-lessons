@@ -16,13 +16,7 @@ if (!defined('ABSPATH')) {
 
 require_once 'src/Plugin.php';
 
-$plugin = new Plugin(
-    plugin_dir_path(__FILE__),
-    plugin_dir_url(__FILE__)
-);
-
+$plugin = new Plugin(__FILE__);
 $plugin->addActions();
 $plugin->addFilters();
-
-register_activation_hook(__FILE__, fn()  => flush_rewrite_rules());
-register_deactivation_hook(__FILE__, fn() => flush_rewrite_rules());
+$plugin->registerHooks();

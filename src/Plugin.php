@@ -2,6 +2,7 @@
 
 require_once 'Interfaces/HasActions.php';
 require_once 'Interfaces/HasFilters.php';
+require_once 'Interfaces/HasHooks.php';
 require_once 'Interfaces/HasPath.php';
 
 require_once 'Templates.php';
@@ -13,8 +14,11 @@ require_once 'Taxonomies/Course.php';
 require_once 'Fields/LessonCourse.php';
 require_once 'Fields/LessonOrder.php';
 
-class Plugin implements HasActions, HasFilters, HasPath
+class Plugin implements HasActions, HasFilters, HasHooks, HasPath
 {
+    protected readonly string $file;
+    protected readonly string $path;
+    protected readonly string $url;
     protected Templates $templates;
     protected Lesson $lesson;
     protected Course $course;
@@ -22,10 +26,12 @@ class Plugin implements HasActions, HasFilters, HasPath
     protected LessonOrder $lessonOrder;
     protected TextDomain $textDomain;
 
-    public function __construct(
-        protected readonly string $path,
-        protected readonly string $url,
-    ) {
+    public function __construct(string $file)
+    {
+        $this->file = $file;
+        $this->path = plugin_dir_path($file);
+        $this->url = plugin_dir_url($file);
+
         $this->templates = new Templates($this);
         $this->lesson = new Lesson;
         $this->course = new Course;
@@ -47,6 +53,17 @@ class Plugin implements HasActions, HasFilters, HasPath
     {
         $this->lesson->addFilters();
         $this->lessonOrder->addFilters();
+    }
+
+    public function registerHooks(): void
+    {
+        register_activation_hook($this->getFile(), fn()  => flush_rewrite_rules());
+        register_deactivation_hook($this->getFile(), fn() => flush_rewrite_rules());
+    }
+
+    public function getFile(): string
+    {
+        return $this->file;
     }
 
     public function getPath(): string
