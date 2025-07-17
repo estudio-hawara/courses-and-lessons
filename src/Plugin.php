@@ -18,6 +18,7 @@ class Plugin
 
     public function __construct(
         protected readonly string $path,
+        protected readonly string $url,
     ) {
         $this->templates = new Templates($this);
         $this->lesson = new Lesson;
@@ -39,11 +40,17 @@ class Plugin
     public function addFilters(): void
     {
         $this->lesson->addFilters();
+        $this->lessonOrder->addFilters();
     }
 
     public function getPath(): string
     {
         return $this->path;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
     }
 
     public function getTemplates(): Templates

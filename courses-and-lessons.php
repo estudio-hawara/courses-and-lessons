@@ -17,7 +17,8 @@ if (!defined('ABSPATH')) {
 require_once 'src/Plugin.php';
 
 $plugin = new Plugin(
-    plugin_dir_path(__FILE__)
+    plugin_dir_path(__FILE__),
+    plugin_dir_url(__FILE__)
 );
 
 $plugin->addActions();

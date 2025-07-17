@@ -10,16 +10,18 @@ class LessonOrder
         $this->templates = $plugin->getTemplates();
     }
 
-    // TODO: Populate the lesson order
-    // https://www.voxfor.com/implementing-custom-quick-edit-for-custom-post-type-fields-in-wordpress/
-
     public function addActions()
     {
         add_action('quick_edit_custom_box', [$this, 'addCustomBox'], 10, 2);
         add_action('save_post_lesson', [$this, 'savePost']);
         add_action('manage_lesson_posts_custom_column',  [$this, 'displayColumnValue'], 10, 2);
-        add_filter('manage_edit-lesson_sortable_columns', [$this, 'makeSortable']);
         add_action('pre_get_posts', [$this, 'handleSort']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueueScript']);
+    }
+
+    public function addFilters()
+    {
+        add_filter('manage_edit-lesson_sortable_columns', [$this, 'makeSortable']);
     }
 
     /**
@@ -91,5 +93,25 @@ class LessonOrder
             $query->set('meta_key', 'lesson_order');
             $query->set('orderby', 'meta_value_num');
         }
+    }
+
+    /**
+     * Enqueue script on the admin lessons listing page
+     */
+    public function enqueueScript($hook)
+    {
+        if ($hook !== 'edit.php')
+            return;
+
+        if (! isset($_GET['post_type']) || $_GET['post_type'] !== 'lesson')
+            return;
+
+        wp_enqueue_script(
+            'lesson-order-quick-edit',
+            path_join($this->plugin->getUrl(), 'js/lesson-order-quick-edit.js'),
+            ['jquery', 'inline-edit-post'],
+            false,
+            true
+        );
     }
 }
