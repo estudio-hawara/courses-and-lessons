@@ -22,84 +22,17 @@ $templates = new Templates($plugin);
 /**
  * Register the Lesson custom post type
  */
-add_action('init', function () {
-    $labels = [
-        'name' => __('Lessons', 'courses-and-lessons'),
-        'singular_name' => __('Lesson', 'courses-and-lessons'),
-        'menu_name' => __('Lessons', 'courses-and-lessons'),
-        'add_new' => __('Add New', 'courses-and-lessons'),
-        'add_new_item' => __('Add New Lesson', 'courses-and-lessons'),
-        'edit_item' => __('Edit Lesson', 'courses-and-lessons'),
-        'new_item' => __('New Lesson', 'courses-and-lessons'),
-        'view_item' => __('View Lesson', 'courses-and-lessons'),
-        'search_items' => __('Search Lessons', 'courses-and-lessons'),
-        'not_found' => __('No lessons found', 'courses-and-lessons'),
-        'not_found_in_trash' => __('No lessons found in trash', 'courses-and-lessons'),
-        'all_items' => __('All Lessons', 'courses-and-lessons'),
-        'archives' => __('Lesson Archives', 'courses-and-lessons'),
-        'attributes' => __('Lesson Attributes', 'courses-and-lessons'),
-        'insert_into_item' => __('Insert into lesson', 'courses-and-lessons'),
-        'uploaded_to_this_item' => __('Uploaded to this lesson', 'courses-and-lessons'),
-    ];
-    
-    $args = [
-        'labels' => $labels,
-        'public' => true,
-        'publicly_queryable' => true,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'query_var' => true,
-        'rewrite' => ['slug' => 'lessons'],
-        'capability_type' => 'post',
-        'has_archive' => true,
-        'hierarchical' => false,
-        'menu_position' => 5,
-        'menu_icon' => 'dashicons-welcome-learn-more',
-        'supports' => ['title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions'],
-        'show_in_rest' => true, // Enable Gutenberg editor
-    ];
-    
-    register_post_type('lesson', $args);
-});
+(new Lesson)->init();
 
 /**
  * Register the Courses taxonomy
  */
-add_action('init', function () {
-    $labels = [
-        'name' => __('Courses', 'courses-and-lessons'),
-        'singular_name' => __('Course', 'courses-and-lessons'),
-        'search_items' => __('Search Courses', 'courses-and-lessons'),
-        'popular_items' => __('Popular Courses', 'courses-and-lessons'),
-        'all_items' => __('All Courses', 'courses-and-lessons'),
-        'edit_item' => __('Edit Course', 'courses-and-lessons'),
-        'update_item' => __('Update Course', 'courses-and-lessons'),
-        'add_new_item' => __('Add New Course', 'courses-and-lessons'),
-        'new_item_name' => __('New Course Name', 'courses-and-lessons'),
-        'separate_items_with_commas' => __('Separate courses with commas', 'courses-and-lessons'),
-        'add_or_remove_items' => __('Add or remove courses', 'courses-and-lessons'),
-        'choose_from_most_used' => __('Choose from the most used courses', 'courses-and-lessons'),
-        'menu_name' => __('Courses', 'courses-and-lessons'),
-    ];
-    
-    $args = [
-        'labels' => $labels,
-        'hierarchical' => false,
-        'public' => true,
-        'publicly_queryable' => true,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'show_admin_column' => true,
-        'show_in_quick_edit' => false,
-        'query_var' => true,
-        'rewrite' => ['slug' => 'courses'],
-        'show_in_rest' => false,
-        'show_tagcloud' => false,
-        'meta_box_cb' => false,
-    ];
+(new Course)->init();
 
-    register_taxonomy('courses', ['lesson'], $args);
-});
+/**
+ * Load plugin textdomain for translations
+ */
+(new TextDomain($plugin))->init();
 
 /**
  * Show a selector to choose the course of each lesson
@@ -135,43 +68,41 @@ add_action('add_meta_boxes', function() {
  * Save the selected course
  */
 add_action('save_post_lesson', function ($post_id) {
-    if (! isset($_POST['course_dropdown_nonce']) || ! wp_verify_nonce($_POST['course_dropdown_nonce'], 'save_course_dropdown')) {
+    if (! isset($_POST['course_dropdown_nonce']))
         return;
-    }
 
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-    if (wp_is_post_revision($post_id)) return;
+    if (! wp_verify_nonce($_POST['course_dropdown_nonce'], 'save_course_dropdown'))
+        return;
 
-    $term_id = isset($_POST['course_dropdown']) ? intval($_POST['course_dropdown']) : 0;
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+        return;
 
-    if ($term_id) {
-        wp_set_post_terms($post_id, [$term_id], 'courses');
-    } else {
-        wp_set_post_terms($post_id, [], 'courses');
-    }
+    if (wp_is_post_revision($post_id))
+        return;
+
+    $terms = isset($_POST['course_dropdown']) ? [intval($_POST['course_dropdown'])] : [];
+
+    wp_set_post_terms($post_id, $terms, 'courses');
 });
 
 /**
  * Save the lesson order
  */
 add_action('save_post_lesson', function ($post_id) {
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-    if (wp_is_post_revision($post_id)) return;
+    if (! isset($_POST['lesson_order_nonce'])) 
+        return;
 
-    if (isset($_POST['lesson_order'])) {
+    if (! wp_verify_nonce($_POST['lesson_order_nonce'], 'save_lesson_order'))
+        return;
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+        return;
+
+    if (wp_is_post_revision($post_id))
+        return;
+
+    if (isset($_POST['lesson_order']))
         update_post_meta($post_id, 'lesson_order', intval($_POST['lesson_order']));
-    }
-});
-
-/**
- * Load plugin textdomain for translations
- */
-add_action('init', function () {
-    load_plugin_textdomain(
-        'courses-and-lessons',
-        false,
-        dirname(plugin_basename(__FILE__)) . '/languages/'
-    );
 });
 
 /**
@@ -221,6 +152,8 @@ add_action('manage_lesson_posts_custom_column',  function ($column, $post_id) {
 add_action('quick_edit_custom_box', function($column_name, $post_type) use ($templates) {
     if ($column_name !== 'lesson_order' || $post_type !== 'lesson')
         return;
+
+    wp_nonce_field('save_lesson_order', 'lesson_order_nonce');
 
     echo $templates->render('quick-edit-lesson-order', [
         'title' => __('Lesson Order', 'courses-and-lessons'),
