@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-require_once 'src/loader.php';
+require_once 'src/Plugin.php';
 
 $plugin = new Plugin(
     plugin_dir_path(__FILE__)

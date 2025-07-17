@@ -1,11 +1,18 @@
 <?php
 
+require_once 'Templates.php';
+require_once 'TextDomain.php';
+require_once 'PostTypes/Lesson.php';
+require_once 'Taxonomies/Course.php';
+require_once 'Fields/LessonCourse.php';
+require_once 'Fields/LessonOrder.php';
+
 class Plugin
 {
     protected Templates $templates;
     protected Lesson $lesson;
     protected Course $course;
-    protected CourseDropdown $courseDropdown;
+    protected LessonCourse $lessonCourse;
     protected LessonOrder $lessonOrder;
     protected TextDomain $textDomain;
 
@@ -16,7 +23,7 @@ class Plugin
         $this->lesson = new Lesson;
         $this->course = new Course;
         $this->lessonOrder = new LessonOrder($this);
-        $this->courseDropdown = new CourseDropdown($this);
+        $this->lessonCourse = new LessonCourse($this);
         $this->textDomain = new TextDomain($this);
     }
 
@@ -25,7 +32,7 @@ class Plugin
         $this->lesson->addActions();
         $this->course->addActions();
         $this->lessonOrder->addActions();
-        $this->courseDropdown->addActions();
+        $this->lessonCourse->addActions();
         $this->textDomain->addActions();
     }
 

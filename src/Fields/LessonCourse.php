@@ -1,6 +1,6 @@
 <?php
 
-class CourseDropdown
+class LessonCourse
 {
     public function __construct(
         protected readonly Plugin $plugin
