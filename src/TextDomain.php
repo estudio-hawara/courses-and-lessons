@@ -23,8 +23,6 @@ class TextDomain
      */
     public function load()
     {
-        error_log("Language path: ".$this->getPath());
-
         load_plugin_textdomain(
             'courses-and-lessons',
             false,
