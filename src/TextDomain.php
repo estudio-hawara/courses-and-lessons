@@ -13,7 +13,7 @@ class TextDomain
         return path_join($this->plugin->getPath(), "languages/");
     }
 
-    public function init()
+    public function addActions()
     {
         add_action('init', [$this, 'load']);
     }

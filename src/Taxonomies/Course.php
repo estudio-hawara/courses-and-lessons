@@ -2,7 +2,7 @@
 
 class Course
 {
-    public function init()
+    public function addActions()
     {
         add_action('init', [$this, 'register']);
     }

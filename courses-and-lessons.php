@@ -22,88 +22,32 @@ $templates = new Templates($plugin);
 /**
  * Register the Lesson custom post type
  */
-(new Lesson)->init();
+(new Lesson)->addActions();
 
 /**
  * Register the Courses taxonomy
  */
-(new Course)->init();
+(new Course)->addActions();
 
 /**
  * Load plugin textdomain for translations
  */
-(new TextDomain($plugin))->init();
+(new TextDomain($plugin))->addActions();
 
 /**
  * Show a selector to choose the course of each lesson
+ * and save its value on submission
  */
-add_action('add_meta_boxes', function() {
-    add_meta_box('course_dropdown_meta_box', __('Course', 'courses-and-lessons'),
-        function ($post) {
-            $current_terms = wp_get_post_terms($post->ID, 'courses', ['fields' => 'ids']);
-            $current_term_id = $current_terms ? $current_terms[0] : 0;
+(new CourseDropdown($plugin))->addActions();
 
-            $terms = get_terms([
-                'taxonomy' => 'courses',
-                'hide_empty' => false,
-            ]);
-
-            wp_nonce_field('save_course_dropdown', 'course_dropdown_nonce');
-
-            echo '<select name="course_dropdown" id="course_dropdown">';
-            echo '<option value="">' . __('- Select Course -', 'courses-and-lessons') . '</option>';
-            foreach ($terms as $term) {
-                $selected = selected($term->term_id, $current_term_id, false);
-                echo "<option value='{$term->term_id}' $selected>{$term->name}</option>";
-            }
-            echo '</select>';
-        },
-        'lesson',
-        'side',
-        'default'
-    );
-});
+// TODO: Populate the lesson order
+// https://www.voxfor.com/implementing-custom-quick-edit-for-custom-post-type-fields-in-wordpress/
 
 /**
- * Save the selected course
+ * Make the lesson order editable in the quick box
+ * and save its value on submission
  */
-add_action('save_post_lesson', function ($post_id) {
-    if (! isset($_POST['course_dropdown_nonce']))
-        return;
-
-    if (! wp_verify_nonce($_POST['course_dropdown_nonce'], 'save_course_dropdown'))
-        return;
-
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
-        return;
-
-    if (wp_is_post_revision($post_id))
-        return;
-
-    $terms = isset($_POST['course_dropdown']) ? [intval($_POST['course_dropdown'])] : [];
-
-    wp_set_post_terms($post_id, $terms, 'courses');
-});
-
-/**
- * Save the lesson order
- */
-add_action('save_post_lesson', function ($post_id) {
-    if (! isset($_POST['lesson_order_nonce'])) 
-        return;
-
-    if (! wp_verify_nonce($_POST['lesson_order_nonce'], 'save_lesson_order'))
-        return;
-
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
-        return;
-
-    if (wp_is_post_revision($post_id))
-        return;
-
-    if (isset($_POST['lesson_order']))
-        update_post_meta($post_id, 'lesson_order', intval($_POST['lesson_order']));
-});
+(new LessonOrder($plugin))->addActions();
 
 /**
  * Add custom columns to lesson admin list
@@ -141,23 +85,6 @@ add_action('manage_lesson_posts_custom_column',  function ($column, $post_id) {
 
             break;
     }
-}, 10, 2);
-
-// TODO: Populate the lesson order
-// https://www.voxfor.com/implementing-custom-quick-edit-for-custom-post-type-fields-in-wordpress/
-
-/**
- * Make the lesson order editable
- */
-add_action('quick_edit_custom_box', function($column_name, $post_type) use ($templates) {
-    if ($column_name !== 'lesson_order' || $post_type !== 'lesson')
-        return;
-
-    wp_nonce_field('save_lesson_order', 'lesson_order_nonce');
-
-    echo $templates->render('quick-edit-lesson-order', [
-        'title' => __('Lesson Order', 'courses-and-lessons'),
-    ]);
 }, 10, 2);
 
 /**
