@@ -8,18 +8,23 @@ class TextDomain
         //
     }
 
-    public function getPath(): string
-    {
-        return path_join($this->plugin->getPath(), "languages/");
-    }
-
     public function addActions()
     {
         add_action('init', [$this, 'load']);
     }
 
+    public function getPath(): string
+    {
+        return path_join($this->plugin->getPath(), "languages/");
+    }
+
+    /**
+     * Load plugin textdomain for translations
+     */
     public function load()
     {
+        error_log("Language path: ".$this->getPath());
+
         load_plugin_textdomain(
             'courses-and-lessons',
             false,

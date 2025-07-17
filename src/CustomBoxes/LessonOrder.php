@@ -10,13 +10,20 @@ class LessonOrder
         $this->templates = $plugin->getTemplates();
     }
 
+    // TODO: Populate the lesson order
+    // https://www.voxfor.com/implementing-custom-quick-edit-for-custom-post-type-fields-in-wordpress/
+
     public function addActions()
     {
         add_action('quick_edit_custom_box', [$this, 'addCustomBox'], 10, 2);
         add_action('save_post_lesson', [$this, 'savePost']);
     }
 
-    public function addCustomBox($column_name, $post_type) {
+    /**
+     * Make the lesson order editable in the quick box
+     */
+    public function addCustomBox($column_name, $post_type)
+    {
         if ($column_name !== 'lesson_order' || $post_type !== 'lesson')
             return;
 
@@ -27,6 +34,9 @@ class LessonOrder
         ]);
     }
 
+    /**
+     * Save the lesson order on submission
+     */
     public function savePost($post_id)
     {
         if (! isset($_POST['lesson_order_nonce'])) 

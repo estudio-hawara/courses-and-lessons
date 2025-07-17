@@ -14,6 +14,9 @@ class CourseDropdown
         add_action('save_post_lesson', [$this, 'savePost']);
     }
 
+    /**
+     * Show a selector to choose the course of each lesson
+     */
     public function addMetaBox()
     {
         add_meta_box('course_dropdown_meta_box', __('Course', 'courses-and-lessons'),
@@ -42,6 +45,9 @@ class CourseDropdown
         );
     }
 
+    /**
+     * Save the lesson order on submission
+     */
     public function savePost($post_id) {
         if (! isset($_POST['course_dropdown_nonce']))
             return;

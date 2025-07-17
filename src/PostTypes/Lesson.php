@@ -2,12 +2,20 @@
 
 class Lesson
 {
-    public function addActions()
+    public function addActions(): void
     {
         add_action('init', [$this, 'register']);
     }
 
-    public function register()
+    public function addFilters(): void
+    {
+        add_filter('manage_lesson_posts_columns', [$this, 'setManageColumns']);
+    }
+
+    /**
+     * Register the lesson custom post type
+     */
+    public function register(): void
     {
         $labels = [
             'name' => __('Lessons', 'courses-and-lessons'),
@@ -46,5 +54,18 @@ class Lesson
         ];
         
         register_post_type('lesson', $args);
+    }
+
+    /**
+     * Add custom columns to lesson admin list
+     */
+    public function setManageColumns($columns) {
+        return [
+            'cb' => $columns['cb'],
+            'title' => $columns['title'],
+            'courses' => __('Courses', 'courses-and-lessons'),
+            'lesson_order' => __('Order', 'courses-and-lessons'),
+            'date' => $columns['date'],
+        ];
     }
 }

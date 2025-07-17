@@ -16,51 +16,12 @@ if (!defined('ABSPATH')) {
 
 require_once 'src/loader.php';
 
-$plugin = new Plugin(plugin_dir_path(__FILE__));
-$templates = new Templates($plugin);
+$plugin = new Plugin(
+    plugin_dir_path(__FILE__)
+);
 
-/**
- * Register the Lesson custom post type
- */
-(new Lesson)->addActions();
-
-/**
- * Register the Courses taxonomy
- */
-(new Course)->addActions();
-
-/**
- * Load plugin textdomain for translations
- */
-(new TextDomain($plugin))->addActions();
-
-/**
- * Show a selector to choose the course of each lesson
- * and save its value on submission
- */
-(new CourseDropdown($plugin))->addActions();
-
-// TODO: Populate the lesson order
-// https://www.voxfor.com/implementing-custom-quick-edit-for-custom-post-type-fields-in-wordpress/
-
-/**
- * Make the lesson order editable in the quick box
- * and save its value on submission
- */
-(new LessonOrder($plugin))->addActions();
-
-/**
- * Add custom columns to lesson admin list
- */
-add_filter('manage_lesson_posts_columns', function ($columns) {
-    return [
-        'cb' => $columns['cb'],
-        'title' => $columns['title'],
-        'courses' => __('Courses', 'courses-and-lessons'),
-        'lesson_order' => __('Order', 'courses-and-lessons'),
-        'date' => $columns['date'],
-    ];
-});
+$plugin->addActions();
+$plugin->addFilters();
 
 /**
  * Display custom column content

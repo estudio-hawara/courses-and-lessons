@@ -7,6 +7,9 @@ class Course
         add_action('init', [$this, 'register']);
     }
 
+    /**
+     * Register the Courses taxonomy
+     */
     public function register()
     {
         $labels = [
