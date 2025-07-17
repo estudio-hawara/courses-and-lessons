@@ -12,6 +12,8 @@ class LessonCourse
     {
         add_action('add_meta_boxes', [$this, 'addMetaBox']);
         add_action('save_post_lesson', [$this, 'savePost']);
+        add_action('manage_lesson_posts_custom_column', [$this, 'displayColumnValue'], 10, 2);
+        add_action('restrict_manage_posts', [$this, 'filterByCourse']);
     }
 
     /**
@@ -64,5 +66,53 @@ class LessonCourse
         $terms = isset($_POST['course_dropdown']) ? [intval($_POST['course_dropdown'])] : [];
 
         wp_set_post_terms($post_id, $terms, 'courses');
+    }
+
+    /**
+     * Show the lesson course value in the lesson management table
+     */
+    public function displayColumnValue($column, $post_id) {
+        if ($column !== 'courses')
+            return;
+
+        $courses = get_the_terms($post_id, 'courses');
+
+        if (empty($courses))
+            return;
+
+        $course = reset($courses);
+
+        echo '<a href="' . admin_url('edit.php?post_type=lesson&courses=' . $course->slug) . '">' .
+            $course->name .
+        '</a>';
+    }
+
+    /**
+     * Filter lessons by course
+     */
+    public function filterByCourse($post_type)
+    {
+        if (! is_admin())
+            return;
+
+        if('lesson' !== $post_type)
+            return;
+
+        $taxonomies_slugs = ['courses'];
+
+        foreach($taxonomies_slugs as $slug) {
+            $taxonomy = get_taxonomy($slug);
+            $selected = isset($_REQUEST[$slug]) ? $_REQUEST[$slug] : '';
+
+            wp_dropdown_categories([
+                'show_option_all' => $taxonomy->labels->all_items,
+                'taxonomy' => $slug,
+                'name' => $slug,
+                'orderby' => 'name',
+                'value_field' => 'slug',
+                'selected' => $selected,
+                'hierarchical' => false,
+            ]);
+        }
     }
 }
