@@ -30,7 +30,7 @@ class Course implements HasActions
         
         $args = [
             'labels' => $labels,
-            'hierarchical' => false,
+            'hierarchical' => true,
             'public' => true,
             'publicly_queryable' => true,
             'show_ui' => true,
