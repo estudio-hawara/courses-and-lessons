@@ -8,7 +8,7 @@ class Course implements HasActions
     }
 
     /**
-     * Register the Courses taxonomy
+     * Register the courses taxonomy
      */
     public function register()
     {
@@ -30,7 +30,7 @@ class Course implements HasActions
         
         $args = [
             'labels' => $labels,
-            'hierarchical' => true,
+            'hierarchical' => false,
             'public' => true,
             'publicly_queryable' => true,
             'show_ui' => true,

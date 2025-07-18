@@ -1,102 +1,205 @@
-# Courses and Lessons
-# Copyright (C) Carlos Capote Pérez-Andreu
-# This file is distributed under the same license as the courses-and-lessons package.
-# Carlos Capote Pérez-Andreu <carlos.capote@hawara.es>, 2025.
-
 msgid ""
 msgstr ""
 "Project-Id-Version: Courses and Lessons 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-16 12:00+0000\n"
-"PO-Revision-Date: 2025-07-16 12:00+0000\n"
 "Last-Translator: Carlos Capote Pérez-Andreu <carlos.capote@hawara.es>\n"
 "Language-Team: Spanish\n"
-"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-07-16 12:00+0000\n"
+"PO-Revision-Date: 2025-07-16 12:00+0000\n"
+"Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: src/PostTypes/Lesson.php:21
+#: src/PostTypes/Lesson.php:23
 msgid "Lessons"
 msgstr "Lecciones"
 
+#: src/PostTypes/Lesson.php:22
 msgid "Lesson"
 msgstr "Lección"
 
+#: src/PostTypes/Lesson.php:24
 msgid "Add New"
 msgstr "Añadir nueva"
 
+#: src/PostTypes/Lesson.php:25
 msgid "Add New Lesson"
 msgstr "Añadir nueva lección"
 
+#: src/PostTypes/Lesson.php:26
 msgid "Edit Lesson"
 msgstr "Editar lección"
 
+#: src/PostTypes/Lesson.php:27
 msgid "New Lesson"
 msgstr "Nueva lección"
 
+#: src/PostTypes/Lesson.php:28
 msgid "View Lesson"
 msgstr "Ver lección"
 
+#: src/PostTypes/Lesson.php:29
 msgid "Search Lessons"
 msgstr "Buscar lecciones"
 
+#: src/PostTypes/Lesson.php:30
 msgid "No lessons found"
 msgstr "No se encontraron lecciones"
 
+#: src/PostTypes/Lesson.php:31
 msgid "No lessons found in trash"
 msgstr "No se encontraron lecciones en la papelera"
 
+#: src/PostTypes/Lesson.php:32
 msgid "All Lessons"
 msgstr "Todas las lecciones"
 
+#: src/PostTypes/Lesson.php:33
 msgid "Lesson Archives"
 msgstr "Archivo de lecciones"
 
+#: src/PostTypes/Lesson.php:34
 msgid "Lesson Attributes"
 msgstr "Atributos de lección"
 
+#: src/PostTypes/Lesson.php:35
 msgid "Insert into lesson"
 msgstr "Insertar en lección"
 
+#: src/PostTypes/Lesson.php:36
 msgid "Uploaded to this lesson"
 msgstr "Subido a esta lección"
 
+#: src/Taxonomies/Course.php:16
+#: src/Taxonomies/Course.php:28
 msgid "Courses"
 msgstr "Cursos"
 
+#: src/Taxonomies/Course.php:17
 msgid "Course"
 msgstr "Curso"
 
+#: src/Taxonomies/Course.php:18
 msgid "Search Courses"
 msgstr "Buscar cursos"
 
+#: src/Taxonomies/Course.php:19
 msgid "Popular Courses"
 msgstr "Cursos populares"
 
+#: src/Taxonomies/Course.php:20
 msgid "All Courses"
 msgstr "Todos los cursos"
 
+#: src/Taxonomies/Course.php:21
 msgid "Edit Course"
 msgstr "Editar curso"
 
+#: src/Taxonomies/Course.php:22
 msgid "Update Course"
 msgstr "Actualizar curso"
 
+#: src/Taxonomies/Course.php:23
 msgid "Add New Course"
 msgstr "Nuevo curso"
 
+#: src/Taxonomies/Course.php:24
 msgid "New Course Name"
 msgstr "Nombre del nuevo curso"
 
+#: src/Taxonomies/Course.php:25
 msgid "Separate courses with commas"
 msgstr "Separar cursos con comas"
 
+#: src/Taxonomies/Course.php:26
 msgid "Add or remove courses"
 msgstr "Añadir o eliminar cursos"
 
+#: src/Taxonomies/Course.php:27
 msgid "Choose from the most used courses"
 msgstr "Elegir de los cursos más utilizados"
 
+#: src/PostTypes/Lesson.php:67
 msgid "Order"
 msgstr "Orden"
+
+#. Plugin Name of the plugin
+#: courses-and-lessons.php
+msgid "Courses and Lessons"
+msgstr "Cursos y lecciones"
+
+#. Description of the plugin
+#: courses-and-lessons.php
+msgid "Creates a custom post type for Lessons and a custom taxonomy for Courses"
+msgstr "Crea un tipo de post personalizado para lecciones y una taxonomía personalizada para cursos"
+
+#. Author of the plugin
+#: courses-and-lessons.php
+msgid "Carlos Capote <carlos.capote@hawara.es>"
+msgstr "Carlos Capote <carlos.capote@hawara.es>"
+
+#: src/Fields/LessonModule.php:24
+#: src/PostTypes/Lesson.php:66
+#: src/Taxonomies/Module.php:17
+msgid "Module"
+msgstr "Módulo"
+
+#: src/Fields/LessonModule.php:41
+msgid "- Select Module -"
+msgstr "- Seleccionar módulo -"
+
+#: src/Fields/LessonModule.php:117
+msgid "Show all"
+msgstr "Mostrar todo"
+
+#: src/Fields/LessonOrder.php:38
+msgid "Lesson Order"
+msgstr "Orden de la lección"
+
+#: src/Taxonomies/Module.php:16
+#: src/Taxonomies/Module.php:28
+msgid "Modules"
+msgstr "Módulos"
+
+#: src/Taxonomies/Module.php:18
+msgid "Search Modules"
+msgstr "Buscar módulos"
+
+#: src/Taxonomies/Module.php:19
+msgid "Popular Modules"
+msgstr "Módulos populares"
+
+#: src/Taxonomies/Module.php:20
+msgid "All Modules"
+msgstr "Todos los módulos"
+
+#: src/Taxonomies/Module.php:21
+msgid "Edit Module"
+msgstr "Editar módulo"
+
+#: src/Taxonomies/Module.php:22
+msgid "Update Module"
+msgstr "Actualizar módulo"
+
+#: src/Taxonomies/Module.php:23
+msgid "Add New Module"
+msgstr "Añadir nuevo módulo"
+
+#: src/Taxonomies/Module.php:24
+msgid "New Module Name"
+msgstr "Nombre del nuevo Módulos"
+
+#: src/Taxonomies/Module.php:25
+msgid "Separate modules with commas"
+msgstr "Separa los módulos con comas"
+
+#: src/Taxonomies/Module.php:26
+msgid "Add or remove modules"
+msgstr "Añadir o eliminar módulos"
+
+#: src/Taxonomies/Module.php:27
+msgid "Choose from the most used modules"
+msgstr "Escoger de entre los módulos más usados"

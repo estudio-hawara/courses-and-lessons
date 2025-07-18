@@ -10,8 +10,9 @@ require_once 'TextDomain.php';
 
 require_once 'PostTypes/Lesson.php';
 require_once 'Taxonomies/Course.php';
+require_once 'Taxonomies/Module.php';
 
-require_once 'Fields/LessonCourse.php';
+require_once 'Fields/LessonModule.php';
 require_once 'Fields/LessonOrder.php';
 
 class Plugin implements HasActions, HasFilters, HasHooks, HasPath
@@ -22,7 +23,8 @@ class Plugin implements HasActions, HasFilters, HasHooks, HasPath
     protected Templates $templates;
     protected Lesson $lesson;
     protected Course $course;
-    protected LessonCourse $lessonCourse;
+    protected Module $module;
+    protected LessonModule $lessonModule;
     protected LessonOrder $lessonOrder;
     protected TextDomain $textDomain;
 
@@ -35,8 +37,9 @@ class Plugin implements HasActions, HasFilters, HasHooks, HasPath
         $this->templates = new Templates($this);
         $this->lesson = new Lesson;
         $this->course = new Course;
+        $this->module = new Module;
         $this->lessonOrder = new LessonOrder($this);
-        $this->lessonCourse = new LessonCourse($this);
+        $this->lessonModule = new LessonModule($this);
         $this->textDomain = new TextDomain($this);
     }
 
@@ -44,8 +47,9 @@ class Plugin implements HasActions, HasFilters, HasHooks, HasPath
     {
         $this->lesson->addActions();
         $this->course->addActions();
+        $this->module->addActions();
         $this->lessonOrder->addActions();
-        $this->lessonCourse->addActions();
+        $this->lessonModule->addActions();
         $this->textDomain->addActions();
     }
 

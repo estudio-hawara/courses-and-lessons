@@ -63,7 +63,7 @@ class Lesson implements HasActions, HasFilters
         return [
             'cb' => $columns['cb'],
             'title' => $columns['title'],
-            'courses' => __('Courses', 'courses-and-lessons'),
+            'module' => __('Module', 'courses-and-lessons'),
             'lesson_order' => __('Order', 'courses-and-lessons'),
             'date' => $columns['date'],
         ];
