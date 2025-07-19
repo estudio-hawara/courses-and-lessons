@@ -13,7 +13,7 @@ class LessonModule implements HasActions
         add_action('add_meta_boxes', [$this, 'addMetaBox']);
         add_action('save_post_lesson', [$this, 'savePost']);
         add_action('manage_lesson_posts_custom_column', [$this, 'displayColumnValue'], accepted_args: 2);
-        // add_action('restrict_manage_posts', [$this, 'filterByModule']);
+        add_action('restrict_manage_posts', [$this, 'filterByModule']);
     }
 
     /**
@@ -24,9 +24,6 @@ class LessonModule implements HasActions
         add_meta_box('module_dropdown_meta_box', __('Module', 'courses-and-lessons'),
             function ($post) {
                 $current_terms = wp_get_post_terms($post->ID, 'modules', ['fields' => 'ids']);
-
-                if (is_wp_error($current_terms))
-                    error_log("Current terms: ".$current_terms->get_error_message());
 
                 $current_term_id = $current_terms ? $current_terms[0] : 0;
 
@@ -80,11 +77,6 @@ class LessonModule implements HasActions
             return;
 
         $modules = get_the_terms($post_id, 'modules');
-
-        if (is_wp_error($modules)) {
-            error_log("Error reading the modules of the lesson $post_id: ".$modules->get_error_message());
-            return;
-        }
 
         if (! is_array($modules))
             return;

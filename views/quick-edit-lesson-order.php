@@ -1,3 +1,9 @@
+<?php
+    /**
+     * @param string $title Label of the lesson order field
+     */
+?>
+
 <fieldset class="inline-edit-col-right">
     <div class="inline-edit-col">
         <label class="alignleft">
