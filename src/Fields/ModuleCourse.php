@@ -70,6 +70,7 @@ class ModuleCourse implements HasActions
             return;
 
         $moduleCourse = intval($_POST['module_course']);
+
         update_term_meta($term_id, 'module_course', $moduleCourse);
     }
 }

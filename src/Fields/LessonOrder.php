@@ -57,43 +57,22 @@ class LessonOrder implements HasActions, HasFilters
             if (! wp_verify_nonce($_POST['lesson_order_nonce'], 'save_lesson_order'))
                 return;
 
-            update_post_meta($post_id, 'lesson_order', intval($_POST['lesson_order']));
+            $order = intval($_POST['lesson_order']);
         } else {
-            $current_order = get_post_meta($post_id, 'lesson_order', true);
+            $terms = wp_get_post_terms($post_id, 'courses', ['fields' => 'ids']);
 
-            if ($current_order)
+            if (! is_array($terms) || empty($terms))
                 return;
 
-            $terms = wp_get_post_terms($post_id, 'courses', ['fields' => 'ids']);
-            $course_id = !empty($terms) ? $terms[0] : 0;
-            $order = 1;
+            $course_id = reset($terms);
 
-            if ($course_id) {
-                global $wpdb;
+            if (! $course_id)
+                return;
 
-                $query = $wpdb->prepare(
-                    "SELECT MAX(pm.meta_value)
-                    FROM wp_postmeta pm
-                    INNER JOIN wp_term_relationships tr ON pm.post_id = tr.object_id
-                    INNER JOIN wp_posts p ON pm.post_id = p.id
-                    WHERE pm.meta_key = 'lesson_order'
-                    AND tr.term_taxonomy_id = %d
-                    AND pm.post_id != %d
-                    AND p.post_status = 'publish'
-                    GROUP BY tr.term_taxonomy_id",
-                    $course_id,
-                    $post_id
-                );
-
-                $max_order = $wpdb->get_var($query);
-                
-                if ($max_order !== null) {
-                    $order = intval($max_order) + 1;
-                }
-            }
-
-            update_post_meta($post_id, 'lesson_order', $order);
+            $order = $this->getNextOrder($course_id, $post_id);
         }
+
+        update_post_meta($post_id, 'lesson_order', $order);
     }
 
     /**
@@ -149,5 +128,32 @@ class LessonOrder implements HasActions, HasFilters
             false,
             true
         );
+    }
+
+    /**
+     * Get the next lesson order for a given course
+     */
+    private function getNextOrder(int $courseId, int $postId): int
+    {
+        global $wpdb;
+
+        $query = $wpdb->prepare(
+            "SELECT MAX(pm.meta_value)
+            FROM wp_postmeta pm
+            INNER JOIN wp_term_relationships tr ON pm.post_id = tr.object_id
+            INNER JOIN wp_posts p ON pm.post_id = p.id
+            WHERE pm.meta_key = 'lesson_order'
+            AND tr.term_taxonomy_id = %d
+            AND pm.post_id != %d
+            AND p.post_status = 'publish'
+            GROUP BY tr.term_taxonomy_id",
+            $courseId,
+            $postId
+        );
+
+        $max_order = $wpdb->get_var($query);
+        $order = !is_null($max_order) ? intval($max_order) + 1 : 1;
+
+        return $order;
     }
 }

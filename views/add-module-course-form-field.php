@@ -6,11 +6,11 @@
 
 <div class="form-field">
 
-    <label for="mocule_course">
+    <label for="module_course">
         <?php _e('Course', 'courses-and-lessons'); ?>
     </label>
 
-    <select name="mocule_course" id="mocule_course">
+    <select name="module_course" id="module_course">
         <option value=""><?php _e('Select a Course', 'courses-and-lessons'); ?></option>
         <?php foreach ($courses as $course): ?>
             <option value="<?php echo esc_attr($course->term_id); ?>">

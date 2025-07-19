@@ -72,8 +72,8 @@ class Plugin implements HasActions, HasFilters, HasHooks, HasPath
         // Fields
         $this->lessonOrder->addActions();
         $this->lessonModule->addActions();
-        $this->moduleOrder->addActions();
         $this->moduleCourse->addActions();
+        $this->moduleOrder->addActions();
 
         // Translations
         $this->textDomain->addActions();
