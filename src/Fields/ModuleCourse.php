@@ -32,7 +32,7 @@ class ModuleCourse implements HasActions
 
         wp_nonce_field('save_module_course', 'module_course_nonce');
 
-        echo $this->templates->render('edit-module-course-form-field', [
+        echo $this->templates->render('module-course/edit-form-field', [
             'courses' => $courses,
             'currentCourse' => $currentCourse,
         ]);
@@ -50,7 +50,7 @@ class ModuleCourse implements HasActions
 
         wp_nonce_field('save_module_course', 'module_course_nonce');
 
-        echo $this->templates->render('add-module-course-form-field', [
+        echo $this->templates->render('module-course/add-form-field', [
             'courses' => $courses,
         ]);
     }

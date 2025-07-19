@@ -34,7 +34,7 @@ class LessonOrder implements HasActions, HasFilters
 
         wp_nonce_field('save_lesson_order', 'lesson_order_nonce');
 
-        echo $this->templates->render('quick-edit-lesson-order', [
+        echo $this->templates->render('lesson-order/quick-edit', [
             'title' => __('Lesson Order', 'courses-and-lessons'),
         ]);
     }

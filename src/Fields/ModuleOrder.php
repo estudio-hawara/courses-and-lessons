@@ -27,7 +27,7 @@ class ModuleOrder implements HasActions
 
         wp_nonce_field('save_module_order', 'module_order_nonce');
 
-        echo $this->templates->render('edit-module-order-form-field', [
+        echo $this->templates->render('module-order/edit-form-field', [
             'currentOrder' => $currentOrder,
         ]);
     }
@@ -39,7 +39,7 @@ class ModuleOrder implements HasActions
     {
         wp_nonce_field('save_module_order', 'module_order_nonce');
 
-        echo $this->templates->render('add-module-order-form-field');
+        echo $this->templates->render('module-order/add-form-field');
     }
 
     /**
@@ -86,8 +86,8 @@ class ModuleOrder implements HasActions
             $termId
         );
 
-        $max_order = $wpdb->get_var($query);
-        $order = !is_null($max_order) ? intval($max_order) + 1 : 1;
+        $maxOrder = $wpdb->get_var($query);
+        $order = !is_null($maxOrder) ? intval($maxOrder) + 1 : 1;
 
         return $order;
     }
