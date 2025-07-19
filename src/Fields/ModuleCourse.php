@@ -13,9 +13,9 @@ class ModuleCourse implements HasActions
     public function addActions(): void
     {
         add_action('modules_edit_form_fields', [$this, 'editMetaField'], accepted_args: 2);
-        add_action('modules_add_form_fields', [$this, 'addMetaField'], accepted_args: 1);
-        add_action('edited_modules', [$this, 'saveCourseMetaField'], accepted_args: 2);
-        add_action('create_modules', [$this, 'saveCourseMetaField'], accepted_args: 2);
+        add_action('modules_add_form_fields', [$this, 'addMetaField']);
+        add_action('edited_modules', [$this, 'saveMetaField']);
+        add_action('create_modules', [$this, 'saveMetaField']);
     }
 
     /**
@@ -23,7 +23,7 @@ class ModuleCourse implements HasActions
      */
     public function editMetaField($term, $taxonomy)
     {
-        $currentCourse = get_term_meta($term->term_id, 'course', true);
+        $currentCourse = get_term_meta($term->term_id, 'module_course', true);
 
         $courses = get_terms([
             'taxonomy' => 'courses',
@@ -58,9 +58,9 @@ class ModuleCourse implements HasActions
     /**
      * Save the course relationship meta field
      */
-    public function saveCourseMetaField($term_id, $tt_id)
+    public function saveMetaField($term_id)
     {
-        if (! isset($_POST['course']))
+        if (! isset($_POST['module_course']))
             return;
 
         if (! isset($_POST['module_course_nonce'])) 
@@ -69,7 +69,7 @@ class ModuleCourse implements HasActions
         if (! wp_verify_nonce($_POST['module_course_nonce'], 'save_module_course'))
             return;
 
-        $course_id = intval($_POST['course']);
-        update_term_meta($term_id, 'course', $course_id);
+        $moduleCourse = intval($_POST['module_course']);
+        update_term_meta($term_id, 'module_course', $moduleCourse);
     }
 }

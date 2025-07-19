@@ -15,6 +15,7 @@ require_once 'Taxonomies/Module.php';
 require_once 'Fields/LessonModule.php';
 require_once 'Fields/LessonOrder.php';
 require_once 'Fields/ModuleCourse.php';
+require_once 'Fields/ModuleOrder.php';
 
 class Plugin implements HasActions, HasFilters, HasHooks, HasPath
 {
@@ -33,6 +34,7 @@ class Plugin implements HasActions, HasFilters, HasHooks, HasPath
     protected LessonModule $lessonModule;
     protected LessonOrder $lessonOrder;
     protected ModuleCourse $moduleCourse;
+    protected ModuleOrder $moduleOrder;
 
     // Translations
     protected TextDomain $textDomain;
@@ -54,6 +56,7 @@ class Plugin implements HasActions, HasFilters, HasHooks, HasPath
         $this->lessonOrder = new LessonOrder($this);
         $this->lessonModule = new LessonModule($this);
         $this->moduleCourse = new ModuleCourse($this);
+        $this->moduleOrder = new ModuleOrder($this);
 
         // Translations
         $this->textDomain = new TextDomain($this);
@@ -69,6 +72,7 @@ class Plugin implements HasActions, HasFilters, HasHooks, HasPath
         // Fields
         $this->lessonOrder->addActions();
         $this->lessonModule->addActions();
+        $this->moduleOrder->addActions();
         $this->moduleCourse->addActions();
 
         // Translations
