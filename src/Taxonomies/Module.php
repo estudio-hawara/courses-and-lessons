@@ -38,7 +38,6 @@ class Module implements HasActions
             'show_admin_column' => true,
             'show_in_quick_edit' => false,
             'query_var' => true,
-            'rewrite' => ['slug' => 'courses'],
             'show_in_rest' => false,
             'show_tagcloud' => false,
             'meta_box_cb' => false,
