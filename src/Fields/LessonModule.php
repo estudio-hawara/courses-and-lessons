@@ -23,12 +23,15 @@ class LessonModule implements HasActions
     {
         add_meta_box('module_dropdown_meta_box', __('Module', 'courses-and-lessons'),
             function ($post) {
-                $current_terms = wp_get_post_terms($post->ID, 'modules', ['fields' => 'ids']);
+                $current_terms = wp_get_post_terms($post->ID, 'module', ['fields' => 'ids']);
 
-                $current_term_id = $current_terms ? $current_terms[0] : 0;
+                if (! is_array($current_terms))
+                    return;
+
+                $current_term_id = count($current_terms) ? $current_terms[0] : 0;
 
                 $terms = get_terms([
-                    'taxonomy' => 'modules',
+                    'taxonomy' => 'module',
                     'hide_empty' => false,
                 ]);
 
@@ -66,7 +69,7 @@ class LessonModule implements HasActions
 
         $terms = isset($_POST['module_dropdown']) ? [intval($_POST['module_dropdown'])] : [];
 
-        wp_set_post_terms($post_id, $terms, 'modules');
+        wp_set_post_terms($post_id, $terms, 'module');
     }
 
     /**
@@ -76,7 +79,7 @@ class LessonModule implements HasActions
         if ($column !== 'module')
             return;
 
-        $modules = get_the_terms($post_id, 'modules');
+        $modules = get_the_terms($post_id, 'module');
 
         if (! is_array($modules))
             return;
@@ -96,10 +99,10 @@ class LessonModule implements HasActions
         if (! is_admin())
             return;
 
-        if('lesson' !== $post_type)
+        if($post_type !== 'lesson')
             return;
 
-        $taxonomies_slugs = ['modules'];
+        $taxonomies_slugs = ['module'];
 
         foreach($taxonomies_slugs as $slug) {
             $taxonomy = get_taxonomy($slug);

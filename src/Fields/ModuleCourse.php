@@ -12,10 +12,10 @@ class ModuleCourse implements HasActions
 
     public function addActions(): void
     {
-        add_action('modules_edit_form_fields', [$this, 'editMetaField'], accepted_args: 2);
-        add_action('modules_add_form_fields', [$this, 'addMetaField']);
-        add_action('edited_modules', [$this, 'saveMetaField']);
-        add_action('create_modules', [$this, 'saveMetaField']);
+        add_action('module_edit_form_fields', [$this, 'editMetaField'], accepted_args: 2);
+        add_action('module_add_form_fields', [$this, 'addMetaField']);
+        add_action('edited_module', [$this, 'saveMetaField']);
+        add_action('create_module', [$this, 'saveMetaField']);
     }
 
     /**
@@ -23,10 +23,10 @@ class ModuleCourse implements HasActions
      */
     public function editMetaField($term, $taxonomy)
     {
-        $currentCourse = get_term_meta($term->term_id, 'module_course', true);
+        $currentCourse = $term?->term_id ? get_term_meta($term->term_id, 'module_course', true) : null;
 
         $courses = get_terms([
-            'taxonomy' => 'courses',
+            'taxonomy' => 'course',
             'hide_empty' => false,
         ]);
 
@@ -44,7 +44,7 @@ class ModuleCourse implements HasActions
     public function addMetaField($taxonomy)
     {
         $courses = get_terms([
-            'taxonomy' => 'courses',
+            'taxonomy' => 'course',
             'hide_empty' => false,
         ]);
 

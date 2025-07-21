@@ -44,6 +44,6 @@ class Module implements HasActions
             'meta_box_cb' => false,
         ];
 
-        register_taxonomy('modules', ['lesson'], $args);
+        register_taxonomy('module', ['lesson'], $args);
     }
 }

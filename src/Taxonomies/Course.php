@@ -44,6 +44,6 @@ class Course implements HasActions
             'meta_box_cb' => false,
         ];
 
-        register_taxonomy('courses', ['lesson'], $args);
+        register_taxonomy('course', ['lesson'], $args);
     }
 }

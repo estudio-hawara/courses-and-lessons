@@ -59,7 +59,7 @@ class LessonOrder implements HasActions, HasFilters
 
             $order = intval($_POST['lesson_order']);
         } else {
-            $terms = wp_get_post_terms($post_id, 'courses', ['fields' => 'ids']);
+            $terms = wp_get_post_terms($post_id, 'course', ['fields' => 'ids']);
 
             if (! is_array($terms) || empty($terms))
                 return;

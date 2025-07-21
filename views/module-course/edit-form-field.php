@@ -11,8 +11,8 @@
         <select name="module_course" id="module_course">
             <option value=""><?php _e('Select a Course', 'courses-and-lessons'); ?></option>
             <?php foreach ($courses as $course): ?>
-                <option value="<?php echo esc_attr($course->term_id); ?>" 
-                    <?php selected($currentCourse, $course->term_id); ?>>
+                <option value="<?php echo esc_attr($course?->term_id); ?>" 
+                    <?php selected($currentCourse, $course?->term_id); ?>>
                     <?php echo esc_html($course->name); ?>
                 </option>
             <?php endforeach; ?>

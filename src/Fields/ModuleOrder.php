@@ -12,10 +12,10 @@ class ModuleOrder implements HasActions
 
     public function addActions(): void
     {
-        add_action('modules_edit_form_fields', [$this, 'editMetaField']);
-        add_action('modules_add_form_fields', [$this, 'addMetaField']);
-        add_action('edited_modules', [$this, 'saveMetaField']);
-        add_action('create_modules', [$this, 'saveMetaField']);
+        add_action('module_edit_form_fields', [$this, 'editMetaField']);
+        add_action('module_add_form_fields', [$this, 'addMetaField']);
+        add_action('edited_module', [$this, 'saveMetaField']);
+        add_action('create_module', [$this, 'saveMetaField']);
     }
 
     /**
@@ -23,7 +23,7 @@ class ModuleOrder implements HasActions
      */
     public function editMetaField($term)
     {
-        $currentOrder = get_term_meta($term->term_id, 'module_order', true);
+        $currentOrder = $term?->term_id ? get_term_meta($term->term_id, 'module_order', true) : null;
 
         wp_nonce_field('save_module_order', 'module_order_nonce');
 
