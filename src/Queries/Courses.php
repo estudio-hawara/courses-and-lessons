@@ -1,6 +1,8 @@
 <?php
 
-class Course
+namespace CoursesAndLessons\Queries;
+
+class Courses
 {
     /**
      * Get all lessons for a course, ordered by module_order and lesson_order
