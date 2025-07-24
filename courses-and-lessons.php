@@ -14,7 +14,9 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-require_once 'src/Plugin.php';
+require_once 'vendor/autoload.php';
+
+use CoursesAndLessons\Plugin;
 
 $plugin = new Plugin(__FILE__);
 $plugin->addActions();

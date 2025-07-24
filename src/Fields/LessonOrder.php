@@ -1,5 +1,12 @@
 <?php
 
+namespace CoursesAndLessons\Fields;
+
+use CoursesAndLessons\Interfaces\HasActions;
+use CoursesAndLessons\Interfaces\HasFilters;
+use CoursesAndLessons\Plugin;
+use CoursesAndLessons\Templates;
+
 class LessonOrder implements HasActions, HasFilters
 {
     protected Templates $templates;

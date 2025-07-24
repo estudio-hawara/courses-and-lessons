@@ -1,21 +1,18 @@
 <?php
 
-require_once 'Interfaces/HasActions.php';
-require_once 'Interfaces/HasFilters.php';
-require_once 'Interfaces/HasHooks.php';
-require_once 'Interfaces/HasPath.php';
+namespace CoursesAndLessons;
 
-require_once 'Templates.php';
-require_once 'TextDomain.php';
-
-require_once 'PostTypes/Lesson.php';
-require_once 'Taxonomies/Course.php';
-require_once 'Taxonomies/Module.php';
-
-require_once 'Fields/LessonModule.php';
-require_once 'Fields/LessonOrder.php';
-require_once 'Fields/ModuleCourse.php';
-require_once 'Fields/ModuleOrder.php';
+use CoursesAndLessons\Fields\LessonModule;
+use CoursesAndLessons\Fields\LessonOrder;
+use CoursesAndLessons\Fields\ModuleCourse;
+use CoursesAndLessons\Fields\ModuleOrder;
+use CoursesAndLessons\Interfaces\HasActions;
+use CoursesAndLessons\Interfaces\HasFilters;
+use CoursesAndLessons\Interfaces\HasHooks;
+use CoursesAndLessons\Interfaces\HasPath;
+use CoursesAndLessons\PostTypes\Lesson;
+use CoursesAndLessons\Taxonomies\Course;
+use CoursesAndLessons\Taxonomies\Module;
 
 class Plugin implements HasActions, HasFilters, HasHooks, HasPath
 {

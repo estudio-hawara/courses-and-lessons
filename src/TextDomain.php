@@ -1,5 +1,10 @@
 <?php
 
+namespace CoursesAndLessons;
+
+use CoursesAndLessons\Interfaces\HasActions;
+use CoursesAndLessons\Interfaces\HasPath;
+
 class TextDomain implements HasActions, HasPath
 {
     public function __construct(

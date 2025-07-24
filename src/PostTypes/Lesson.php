@@ -1,5 +1,10 @@
 <?php
 
+namespace CoursesAndLessons\PostTypes;
+
+use CoursesAndLessons\Interfaces\HasActions;
+use CoursesAndLessons\Interfaces\HasFilters;
+
 class Lesson implements HasActions, HasFilters
 {
     public function addActions(): void

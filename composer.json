@@ -1,0 +1,14 @@
+{
+    "name": "hawara/courses-and-lessons",
+    "autoload": {
+        "psr-4": {
+            "CoursesAndLessons\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Carlos Capote Pérez-Andreu",
+            "email": "carlos.capote@hawara.es"
+        }
+    ]
+}

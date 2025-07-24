@@ -1,5 +1,9 @@
 <?php
 
+namespace CoursesAndLessons\Taxonomies;
+
+use CoursesAndLessons\Interfaces\HasActions;
+
 class Course implements HasActions
 {
     public function addActions(): void

@@ -1,5 +1,9 @@
 <?php
 
+namespace CoursesAndLessons;
+
+use CoursesAndLessons\Interfaces\HasPath;
+
 class Templates implements HasPath
 {
     public function __construct(

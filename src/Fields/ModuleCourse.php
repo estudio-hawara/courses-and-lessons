@@ -1,5 +1,11 @@
 <?php
 
+namespace CoursesAndLessons\Fields;
+
+use CoursesAndLessons\Interfaces\HasActions;
+use CoursesAndLessons\Plugin;
+use CoursesAndLessons\Templates;
+
 class ModuleCourse implements HasActions
 {
     protected Templates $templates;

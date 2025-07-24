@@ -1,5 +1,10 @@
 <?php
 
+namespace CoursesAndLessons\Fields;
+
+use CoursesAndLessons\Interfaces\HasActions;
+use CoursesAndLessons\Plugin;
+
 class LessonModule implements HasActions
 {
     public function __construct(
