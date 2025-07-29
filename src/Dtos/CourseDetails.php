@@ -24,7 +24,7 @@ class CourseDetails
             $this->modulesOrder[] = $module->id;
 
         if (! in_array($lesson->id, $this->lessonsOrder))
-            $this->lessonsOrder[] = $lesson->id;
+            $this->lessonsOrder[$module->id][] = $lesson->id;
 
         $this->modules[$module->id] = $module;
         $this->lessons[$lesson->id] = $lesson;
